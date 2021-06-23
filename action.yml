@@ -18,6 +18,8 @@ outputs:
     description: "Response headers as JSON string with lower cased header names."
   data:
     description: "Response body as string."
+  latest:
+    description: "Latest veersion excluding SNAPSHOT"
 runs:
   using: "node12"
   main: "dist/index.js"

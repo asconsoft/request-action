@@ -39,11 +39,14 @@ async function main() {
 
     const { status, headers, data } = await octokit.request(requestOptions);
 
+    const latest = data.find(e => !e.name.includes("SNAPSHOT"));
+
     core.info(`< ${status} ${Date.now() - time}ms`);
 
     core.setOutput("status", status);
     core.setOutput("headers", JSON.stringify(headers, null, 2));
     core.setOutput("data", JSON.stringify(data, null, 2));
+    core.setOutput("latest", latest.name);
   } catch (error) {
     if (error.status) {
       core.info(`< ${error.status} ${Date.now() - time}ms`);
